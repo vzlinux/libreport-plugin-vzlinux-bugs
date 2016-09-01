@@ -3,7 +3,7 @@ MKDIR_P = mkdir -p
 
 default:
 
-install: src/reporter-vz-bugs man/reporter-vzlinux-bugs.1 man/vzlinux_bugs_event.conf.5 etc/vzlinux_bugs_event.conf workflows/workflow_AnacondaVzLinuxBugzilla.xml events/report_VzLinuxBugzilla.xml
+install: src/reporter-vzlinux-bugs man/reporter-vzlinux-bugs.1 man/vzlinux_bugs_event.conf.5 etc/vzlinux_bugs_event.conf workflows/workflow_AnacondaVzLinuxBugzilla.xml events/report_VzLinuxBugzilla.xml
 	$(MKDIR_P) $(DESTDIR)/etc/libreport/events.d/
 	$(MKDIR_P) $(DESTDIR)/usr/share/man/man5/
 	$(MKDIR_P) $(DESTDIR)/usr/share/man/man1/
