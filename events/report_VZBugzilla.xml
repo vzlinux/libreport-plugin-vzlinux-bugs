@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<event>
+    <name>Virtuozzo Support</name>
+    <description>Report to Virtuozzo</description>
+
+    <requires-items>package</requires-items>
+    <exclude-items-by-default>count,event_log,vmcore</exclude-items-by-default>
+    <exclude-items-always/>
+    <exclude-binary-items>no</exclude-binary-items>
+    <include-items-by-default/>
+    <minimal-rating>0</minimal-rating>
+    <gui-review-elements>yes</gui-review-elements>
+
+    <options>
+        <option type="text" name="VZ_Login">
+            <label>Username</label>
+            <description>User name for public Virtuozzo issue tracker (bugs.openvz.org)</description>
+            <allow-empty>no</allow-empty>
+        </option>
+        <option type="password" name="VZ_Password">
+            <label>Password</label>
+            <description>Virtuoizzo issue tracker password</description>
+            <allow-empty>no</allow-empty>
+        </option>
+    </options>
+</event>
