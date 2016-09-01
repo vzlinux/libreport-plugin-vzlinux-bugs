@@ -19,7 +19,7 @@
 # Our contact details: Parallels IP Holdings GmbH, Vordergasse 59, 8200
 # Schaffhausen, Switzerland.
 
-response=`curl -D- -u ${VZ_Login}:${VZ_Password} -X POST --data '{"fields": {"project": {"key": "VZL"}, "fixVersions": [{"name": "Vz7.0-Update-next"}], "summary": "Anaconda crash - automated report.", "description": "Anaconda crash has been detected.", "issuetype": {"name": "Bug"}}}' -H "Content-Type: application/json" https://bugs.openvz.org/rest/api/2/issue/| grep '"key":'`
+response=`curl -D- -u ${VZ_Login}:${VZ_Password} -X POST --data '{"fields": {"project": {"key": "OVZ"}, "fixVersions": [{"name": "Vz7.0-Update-next"}], "summary": "Anaconda crash - automated report.", "description": "Anaconda crash has been detected.", "issuetype": {"name": "Bug"}}}' -H "Content-Type: application/json" https://bugs.openvz.org/rest/api/2/issue/| grep '"key":'`
 id=`echo $response | cut -f4 -d\"`
 echo "Created issue $id ($response)"
 
