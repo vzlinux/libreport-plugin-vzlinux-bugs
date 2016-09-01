@@ -3,6 +3,6 @@
     <name>Report a bug to Virtuozzo</name>
     <description>Report a bug to Virtuozzo bug tracking system</description>
     <events>
-        <event>report_VZBugzilla</event>
+        <event>report_VzLinuxBugzilla</event>
     </events>
 </workflow>
