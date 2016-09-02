@@ -19,12 +19,41 @@
 # Our contact details: Parallels IP Holdings GmbH, Vordergasse 59, 8200
 # Schaffhausen, Switzerland.
 
-response=`curl -D- -u ${VZ_Login}:${VZ_Password} -X POST --data '{"fields": {"project": {"key": "VZL"}, "fixVersions": [{"name": "VzLinux7.1"}], "summary": "Anaconda crash - automated report.", "description": "Anaconda crash has been detected.", "issuetype": {"name": "Bug"}}}' -H "Content-Type: application/json" https://bugs.openvz.org/rest/api/2/issue/| grep '"key":'`
+BZ_URL="https://bugs.openvz.org"
+
+if [[ -z $VZ_Login || -z $VZ_Password ]]; then
+    echo "Invalid credentials!"
+    exit 1
+fi
+
+if [[ -z ${DUMP_DIR} || ! -d ${DUMP_DIR} ]]; then
+    echo "Can't access folder with logs!"
+    exit 1
+fi
+
+tar czf /tmp/crash.logs.tgz ${DUMP_DIR}
+if [[ ! -f /tmp/crash.logs.tgz ]]; then
+    echo "Can't create archive with logs!"
+    exit 1
+fi
+
+DESC=""
+PKG=""
+if [ -f ${DUMP_DIR}/component ]; then
+    PKG=`cat ${DUMP_DIR}/component`
+else
+    echo "'component' file should be present in log - can't create a bug without it!"
+    exit 1
+fi
+
+if [ -f ${DUMP_DIR}/reason ]; then
+    DESC=`cat ${DUMP_DIR}/reason`
+fi
+
+response=`curl -D- -u ${VZ_Login}:${VZ_Password} -X POST --data "{\"fields\": {\"project\": {\"key\": \"VZL\"}, \"fixVersions\": [{\"name\": \"VzLinux7.1\"}], \"summary\": \"${PKG} crash\", \"description\": \"${PKG}${DESC}\", \"issuetype\": {\"name\": \"Bug\"}}}" -H "Content-Type: application/json" ${BZ_URL}/rest/api/2/issue/| grep '"key":'`
 id=`echo $response | cut -f4 -d\"`
 echo "Created issue $id ($response)"
 
-tar czf /tmp/anaconda.logs.tgz ${DUMP_DIR}
-
-curl -D- -u  ${VZ_Login}:${VZ_Password} -X POST  -H "X-Atlassian-Token: nocheck" -F "file=@/tmp/anaconda.logs.tgz" https://bugs.openvz.org/rest/api/2/issue/${id}/attachments
+curl -D- -u  ${VZ_Login}:${VZ_Password} -X POST  -H "X-Atlassian-Token: nocheck" -F "file=@/tmp/crash.logs.tgz" ${BZ_URL}/rest/api/2/issue/${id}/attachments
 
 exit 0
