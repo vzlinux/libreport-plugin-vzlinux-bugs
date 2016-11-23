@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <event>
-    <name>Report to Virtuozzo</name>
-    <description>Report to Virtuozzo Public Bug Tracker (http://bugs.openvz.org)</description>
+    <name>Report a bug to bugs.openvz.org</name>
+    <description>Report a bug against VzLinux component in the OpenVZ Issue Tracker (http://bugs.openvz.org)</description>
 
     <requires-items>package</requires-items>
     <exclude-items-by-default>count,event_log,vmcore</exclude-items-by-default>
@@ -14,12 +14,12 @@
     <options>
         <option type="text" name="VZ_Login">
             <label>Username for http://bugs.openvz.org</label>
-            <description>User name for public Virtuozzo issue tracker (http://bugs.openvz.org)</description>
+            <description>The username for OpenVZ Issue Tracker (http://bugs.openvz.org)</description>
             <allow-empty>no</allow-empty>
         </option>
         <option type="password" name="VZ_Password">
             <label>Password for http://bugs.openvz.org</label>
-            <description>Virtuoizzo issue tracker (http://bugs.openvz.org) password</description>
+            <description>The password for OpenVZ Issue Tracker (http://bugs.openvz.org)</description>
             <allow-empty>no</allow-empty>
         </option>
     </options>

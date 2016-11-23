@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workflow>
     <name>Report a bug to bugs.openvz.org</name>
-    <description>Report a bug to Virtuozzo bug tracking system (http://bugs.openvz.org)</description>
+    <description>Report a bug to VzLinux component at OpenVZ Issue Tracker (http://bugs.openvz.org)</description>
     <events>
         <event>report_VzLinuxBugzilla</event>
     </events>
